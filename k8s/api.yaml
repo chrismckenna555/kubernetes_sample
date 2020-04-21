@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-sample-api
-          image: chrismckenna555/kubernetes_sample_api
+          image: <your-image-repo>/kubernetes_sample_api
           imagePullPolicy: Always
           ports:
             - containerPort: 5000
