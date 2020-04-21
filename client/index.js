@@ -3,7 +3,7 @@ var axios = require('axios')
 var app = express()
 
 app.get('/', function(req, res) {
-    axios.get('http://localhost:5000/message')
+    axios.get('http://kubernetes-sample-api:5000/message')
         .then(apiResp => {
             res.contentType = "text/html"
             res.status = 200
