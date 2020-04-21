@@ -1,0 +1,39 @@
+# ---------------
+# Deployment
+#----------------
+apiVersion: extensions/v1beta1
+metadata:
+  name: kubernetes-sample-client
+  namespace: app
+kind: Deployment
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kubernetes-sample-client
+    spec:
+      containers:
+        - name: kubernetes-sample-client
+          image: chrismckenna555/kubernetes_sample_client
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+      restartPolicy: Always
+---
+# ---------------
+# Service
+#----------------
+apiVersion: v1
+metadata:
+  name: kubernetes-sample-client
+  namespace: app
+kind: Service
+spec:
+  selector:
+    app: kubernetes-sample-client
+  ports:
+  - name: "3000"
+    port: 3000
+    targetPort: 3000
+  type: NodePort
