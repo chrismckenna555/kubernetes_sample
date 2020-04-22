@@ -1,13 +1,18 @@
 # ---------------
 # Deployment
 #----------------
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 metadata:
   name: kubernetes-sample-client
   namespace: app
+  labels:
+    app: kubernetes-sample-client
 kind: Deployment
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: kubernetes-sample-client
   template:
     metadata:
       labels:
@@ -15,7 +20,7 @@ spec:
     spec:
       containers:
         - name: kubernetes-sample-client
-          image: <your-image-repo>/kubernetes_sample_client
+          image: <your_image_repo>/kubernetes_sample_client
           imagePullPolicy: Always
           ports:
             - containerPort: 3000
